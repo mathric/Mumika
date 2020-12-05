@@ -25,10 +25,6 @@
     "productName": "Mumika",
     "directories": {
       "output": "pack"
-    },
-    "files": [
-      "!res/img/**",
-      "!res/data.json"
-    ]
+    }
   }
 }
