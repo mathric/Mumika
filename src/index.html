@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mumi</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/pretty_checkbox/pretty-checkbox.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script>window.$ = window.jQuery = require("../node_modules/jquery/dist/jquery.js");</script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body style="background: white;" id="main-content">
+
+    <div class="container-fluid" id="top-container">
+        
+            <div id="left-sidebar" style="background-color: hotpink;">
+                <button id="left-sidebar-btn">>></button>
+                <div> 
+                    <h4 class="left-sidebar-func-title">Advance Option</h4>
+                    <h5 class="left-sidebar-func-title">Tag Select Option</h5>
+                    <div class="pretty p-default p-round">
+                        <input type="radio" id="contain-any-tag" name="tag-search-option" checked="checked">
+                        <div class="state">
+                            <label>Contains Any of Selected Tags</label>
+                        </div>
+                    </div>
+                    <div class="pretty p-default p-round">
+                        <input type="radio" id="contain-all-tag" name="tag-search-option">
+                        <div class="state">
+                            <label>Contains All of Selected Tags</label>
+                        </div>
+                    </div>
+                    <div class="pretty p-default p-round">
+                        <input type="radio" id="exclude-all-tag" name="tag-search-option">
+                        <div class="state">
+                            <label>Contains None of Selected Tags</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-2 col-md-12"></div>
+                    <h5 class="left-sidebar-func-title">Store Current Search Result</h5>
+                    <button id="save-condition-btn">Add new Custom Search</button>
+                    <ul id="custom-condition-panel"></ul>
+                        
+                </div>
+
+            </div>
+        
+        
+        <div class="row">
+            <h1 id="title" class="offset-sm-1">Mumika</h1>
+            
+            <div id="tag-container" class="form-check offset-sm-1"></div>
+        </div>
+
+        <div class="row">
+            <input type="search" class="offset-sm-1" id="search-text" placeholder="Search..." />
+            <button id="search-btn" class="search-bar btn btn-info">搜尋</button>
+            <div id="current-search-text"></div>
+            <button id="view-all-btn" type="button" class="search-bar btn btn-info">全部一覽</button>
+            <button id="random-search-btn" type="button" class="search-bar btn btn-info">隨機排序</button>
+
+            <!-- sort dropdownlist -->
+            <div class="btn-group search-bar">
+                <div class="badge badge-info">
+                    <div id="selected-sortProp" class="align-middle">Sort By: </div>
+                </div>
+                
+                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div id="sortProp-dropdown-menu" class="dropdown-menu"></div>
+            </div>
+
+            <button type="button" id="asc-desc-sort-btn" class="search-bar btn btn-info">Order:Asc</button>
+        </div>
+    
+
+    </div>
+
+    <div class="container-fluid" id="item-container"></div>
+    <span id="pageLink"></span>
+
+    <script type="module" src="model.js"></script>
+    <script type="module" src="controller.js"></script>
+    <script type="module" src="view.js"></script> 
+</body>
+
+
+</html>

@@ -1,0 +1,34 @@
+{
+  "name": "mumika",
+  "version": "1.0.0",
+  "description": "Item search tool for image",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Kuan-Yu Chen",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1",
+    
+    "bootstrap": "^4.5.3",
+    "electron-prompt": "^1.6.0"
+  },
+  "build": {
+    "appId": "com.electron.mumika",
+    "productName": "Mumika",
+    "directories": {
+      "output": "pack"
+    },
+    "files": [
+      "!res/img/**",
+      "!res/data.json"
+    ]
+  }
+}
