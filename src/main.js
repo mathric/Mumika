@@ -20,7 +20,6 @@ function createWindow() {
   })
   setMenu();
   win.loadFile("./src/index.html");
-  win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow)
