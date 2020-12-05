@@ -34,9 +34,9 @@ ipcRenderer.on("custom setting storage", (event, args) => customSearchEventHandl
 
 function readUserConfig() {
     try {
-        if (fs.existsSync(path.resolve(__dirname, userConfigPath))) {
+        if (fs.existsSync(userConfigPath)) {
             //file exists
-            let rawdata = fs.readFileSync(path.resolve(__dirname, userConfigPath));
+            let rawdata = fs.readFileSync(userConfigPath);
             let userConfigObj = JSON.parse(rawdata);
             dataPath = userConfigObj["dataURL"];
             userConfig.propVisibility = userConfigObj["visible"]; // false means optional property
@@ -56,7 +56,7 @@ function readData() {
     try {
         if (fs.existsSync(dataPath)) {
             //file exists
-            let rawdata = fs.readFileSync(path.resolve(__dirname, dataPath));
+            let rawdata = fs.readFileSync(dataPath);
             itemList = JSON.parse(rawdata)["itemList"];
         }
         else {
