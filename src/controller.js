@@ -134,10 +134,11 @@ special button that will reload original item list and reload page,
 also initialize sortProperty and asc/desc order
 */
 document.getElementById("view-all-btn").addEventListener("click", () => {
+    sessionStorage.setItem("sortAsc", "true");
     resetFilteredItemList();
+    
     sessionStorage.setItem("tagSearchOption", "contain-any-tag")
     sessionStorage.setItem("sortProperty", userConfig.sortList[0]);
-    sessionStorage.setItem("sortAsc", "true");
     sessionStorage.setItem("selectedTags", JSON.stringify([]));
     sessionStorage.setItem("searchText", "");
     //get to first page
