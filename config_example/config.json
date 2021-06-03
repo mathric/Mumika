@@ -1,0 +1,25 @@
+{
+    "dataURL":"data.json path",
+    "objectTemplate": {
+        "name":null,
+        "id":null, 
+        "tag":null, 
+        "note":null
+    },
+    "visible": {
+        "name":true,
+        "id":true, 
+        "tag":true, 
+        "note":false
+    },
+    "tag": {
+        "style":[
+            "Japan", "Western", "Chinese"
+        ],
+        "material":[
+            "rice", "noodle", "fish", "potato", "soup"
+        ]
+    },
+    "searchProperty": ["name", "note"],
+    "sortList": ["id", "name"]
+}

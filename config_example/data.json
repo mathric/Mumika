@@ -1,0 +1,93 @@
+{
+  "itemList": [
+    {
+      "name": "Sushi",
+      "id": 1,
+      "tag": [
+        "Japan", "rice", "fish"
+      ]
+    },
+    {
+      "name": "sashimi",
+      "id": 2,
+      "tag": [
+        "Japan", "fish"
+      ]
+    },
+    {
+      "name": "hamburger",
+      "id": 3,
+      "tag": ["Western"]
+    },
+    {
+      "name": "french fries",
+      "id": 4,
+      "tag": ["Western", "potato"]
+    },
+    {
+      "name": "potato chips",
+      "id": 5,
+      "tag": ["Western", "potato"]
+    },
+    {
+      "name": "pizza",
+      "id": 6,
+      "tag": ["Western"]
+    },
+    {
+      "name": "ramen",
+      "id": 7,
+      "tag": ["Japan", "noodle"]
+    },
+    {
+      "name": "spaghetti",
+      "id": 8,
+      "tag": ["Western", "noodle"]
+    },
+    {
+      "name": "miso soup",
+      "id": 9,
+      "tag": ["Japan", "soup"]
+    },
+    {
+      "name": "cream of mushroom soup",
+      "id": 10,
+      "tag": ["Western", "soup"]
+    },
+    {
+      "name": "Quiche",
+      "id": 11,
+      "tag": ["Western"]
+    },
+    {
+      "name": "fried rice",
+      "id": 12,
+      "tag": ["Chinese"]
+    },
+    {
+      "name": "sandwich",
+      "id": 13,
+      "tag": ["Western"]
+    },
+    {
+      "name": "yakisoba",
+      "id": 14,
+      "tag": ["Japan", "noodle"]
+    },
+    {
+      "name": "borscht",
+      "id": 15,
+      "tag": ["Western", "soup"]
+    },
+    {
+      "name": "Xiaolongbao",
+      "id": 16,
+      "tag": ["Chinese"]
+    },
+    {
+      "name": "rice dumpling",
+      "id": 17,
+      "tag": ["Chinese"]
+    }
+  ]
+}
