@@ -1,6 +1,6 @@
 import { userConfig, dataPath } from "./model.js";
 import { getTotalPage } from "./model.js";
-import { reloadWindowPageNum, sortPropertyClickEventListener, customSearchClickEventListener } from "./controller.js"
+import { reloadWindowPageNum, sortPropertyClickEventListener } from "./controller.js"
 
 const { remote } = require('electron');
 const { BrowserWindow, dialog } = remote;
@@ -9,11 +9,11 @@ const itemsOneRow = 5
 const maxPageBtn = 9  //need to be odd number
 
 genTagCheckBox();
-checkSearchOptionStatus();
+// checkSearchOptionStatus();
 checkOrderAsc();
 checkSearchText();
 genSortPropMenu();
-genCustomSearchButton();
+// genCustomSearchButton();
 genContent();
 genPageLink();
 
@@ -145,11 +145,11 @@ function checkSearchText() {
 }
 
 //check the sidebar search option is consistent(any, all, exclude)
-function checkSearchOptionStatus() {
-    if("tagSearchOption" in sessionStorage) {
-        document.getElementById(sessionStorage.getItem("tagSearchOption")).checked = "checked";
-    }
-}
+// function checkSearchOptionStatus() {
+//     if("tagSearchOption" in sessionStorage) {
+//         document.getElementById(sessionStorage.getItem("tagSearchOption")).checked = "checked";
+//     }
+// }
 
 //check the order(asc/desc) and change the text/image in correspond button
 function checkOrderAsc() {
@@ -180,58 +180,58 @@ function genSortPropMenu() {
 
 //TODO: also need to do in controller => use an array to store the name of customsetting and use for loop. index has number problem when delete middle element
 //generate the customSetting Button
-function genCustomSearchButton() {
-    let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
-    for (let i = 0; i < customSettingArray.length; i++) {
-        let currentItemName = customSettingArray[i].settingName;
+// function genCustomSearchButton() {
+//     let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
+//     for (let i = 0; i < customSettingArray.length; i++) {
+//         let currentItemName = customSettingArray[i].settingName;
 
-        let customWrapper = document.createElement("li");
-        customWrapper.setAttribute("id", "custom-wrapper-" + String(i + 1))
+//         let customWrapper = document.createElement("li");
+//         customWrapper.setAttribute("id", "custom-wrapper-" + String(i + 1))
 
-        //delete button
-        let customSearchDeleteBtn = document.createElement("button");
-        customSearchDeleteBtn.innerText = "X";
-        customSearchDeleteBtn.addEventListener("click", () => {
-            //will prompt confirmation window first
-            let deletOptions = {
-                type: "warning",
-                buttons: ["Yes", "No"],
-                message: "Do you really want to delete " + currentItemName + " ?"
-            }
-            //return value is the index of selection
-            let response = dialog.showMessageBoxSync(deletOptions)
-            if (response == 0) {
-                //remove object in custom setting array and set back the array to local storage
-                let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
-                for (let j = 0; j < customSettingArray.length; j++) {
-                    if (customSettingArray[j].settingName == currentItemName) {
-                        customSettingArray.splice(i, 1);
-                        break;
-                    }
-                }
-                localStorage.setItem("customSettingArray", JSON.stringify(customSettingArray));
+//         //delete button
+//         let customSearchDeleteBtn = document.createElement("button");
+//         customSearchDeleteBtn.innerText = "X";
+//         customSearchDeleteBtn.addEventListener("click", () => {
+//             //will prompt confirmation window first
+//             let deletOptions = {
+//                 type: "warning",
+//                 buttons: ["Yes", "No"],
+//                 message: "Do you really want to delete " + currentItemName + " ?"
+//             }
+//             //return value is the index of selection
+//             let response = dialog.showMessageBoxSync(deletOptions)
+//             if (response == 0) {
+//                 //remove object in custom setting array and set back the array to local storage
+//                 let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
+//                 for (let j = 0; j < customSettingArray.length; j++) {
+//                     if (customSettingArray[j].settingName == currentItemName) {
+//                         customSettingArray.splice(i, 1);
+//                         break;
+//                     }
+//                 }
+//                 localStorage.setItem("customSettingArray", JSON.stringify(customSettingArray));
 
-                //remove animation
-                $("#custom-wrapper-" + String(i + 1)).slideUp(400);
-                //delete all children
-                while (customWrapper.hasChildNodes()) {
-                    customWrapper.removeChild(customWrapper.lastChild);
-                }
-                customWrapper.remove();
-            }
-        })
+//                 //remove animation
+//                 $("#custom-wrapper-" + String(i + 1)).slideUp(400);
+//                 //delete all children
+//                 while (customWrapper.hasChildNodes()) {
+//                     customWrapper.removeChild(customWrapper.lastChild);
+//                 }
+//                 customWrapper.remove();
+//             }
+//         })
 
-        let customSearchBtnElement = document.createElement("button");
-        customSearchBtnElement.innerText = currentItemName;
-        customSearchBtnElement.addEventListener("click", () => {
-            customSearchClickEventListener(customSettingArray[i]);
-        })
-        customWrapper.appendChild(customSearchDeleteBtn);
-        customWrapper.appendChild(customSearchBtnElement);
-        document.getElementById("custom-condition-panel").appendChild(customWrapper);
-        //}
-    }
-}
+//         let customSearchBtnElement = document.createElement("button");
+//         customSearchBtnElement.innerText = currentItemName;
+//         customSearchBtnElement.addEventListener("click", () => {
+//             customSearchClickEventListener(customSettingArray[i]);
+//         })
+//         customWrapper.appendChild(customSearchDeleteBtn);
+//         customWrapper.appendChild(customSearchBtnElement);
+//         document.getElementById("custom-condition-panel").appendChild(customWrapper);
+//         //}
+//     }
+// }
 
 //generate pagelink
 //in this project all page is present in 0-index base except for displaying text to user

@@ -97,30 +97,30 @@ class CompareItem {
     And it'll only based on the condition generated current result
     e.g. after search then uncheck all tags has no effect unless user press search again then store
 */
-class CustomSearch {
-    constructor() {
-        this.settingName = "";
-        this.sortProperty = sessionStorage.getItem("sortProperty");
-        this.sortAsc = sessionStorage.getItem("sortAsc");
-        this.tagSearchOption = sessionStorage.getItem("tagSearchOption");
-        this.currentPage = sessionStorage.getItem("currentPage");
-        this.selectedTags = sessionStorage.getItem("selectedTags");
-        this.filteredItemList = sessionStorage.getItem("filteredItemList");
-        this.searchText = sessionStorage.getItem("searchText");
-    }
-}
+// class CustomSearch {
+//     constructor() {
+//         this.settingName = "";
+//         this.sortProperty = sessionStorage.getItem("sortProperty");
+//         this.sortAsc = sessionStorage.getItem("sortAsc");
+//         this.tagSearchOption = sessionStorage.getItem("tagSearchOption");
+//         this.currentPage = sessionStorage.getItem("currentPage");
+//         this.selectedTags = sessionStorage.getItem("selectedTags");
+//         this.filteredItemList = sessionStorage.getItem("filteredItemList");
+//         this.searchText = sessionStorage.getItem("searchText");
+//     }
+// }
 
 //add listener for display the left-sidebar
-document.getElementById("left-sidebar-btn").addEventListener("click", function () {
-    document.getElementById("left-sidebar").classList.toggle("active");
-    document.getElementById("main-content").classList.toggle("test");
-    if(document.getElementById("left-sidebar-btn").innerText == "<<") {
-        document.getElementById("left-sidebar-btn").innerText = ">>";
-    }
-    else {
-        document.getElementById("left-sidebar-btn").innerText = "<<";
-    }
-})
+// document.getElementById("left-sidebar-btn").addEventListener("click", function () {
+//     document.getElementById("left-sidebar").classList.toggle("active");
+//     document.getElementById("main-content").classList.toggle("test");
+//     if(document.getElementById("left-sidebar-btn").innerText == "<<") {
+//         document.getElementById("left-sidebar-btn").innerText = ">>";
+//     }
+//     else {
+//         document.getElementById("left-sidebar-btn").innerText = "<<";
+//     }
+// })
 
 //special button that will randomize the order of item and reload page
 document.getElementById("random-search-btn").addEventListener("click", () => {
@@ -176,108 +176,108 @@ document.getElementById("asc-desc-sort-btn").addEventListener("click", () => {
 })
 
 //add new custom condition to use
-document.getElementById("save-condition-btn").addEventListener("click", () => {
-    let customSearchSetting = new CustomSearch();
-    let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
-    let currentCustomSettingNum = customSettingArray.length;
+// document.getElementById("save-condition-btn").addEventListener("click", () => {
+//     let customSearchSetting = new CustomSearch();
+//     let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
+//     let currentCustomSettingNum = customSettingArray.length;
 
-    if (currentCustomSettingNum < maxCustomCondition) {
-        //default name
-        let defaultSettingName = "DefaultSetting-" + genRandomName(3);
-        let settingName = "";
+//     if (currentCustomSettingNum < maxCustomCondition) {
+//         //default name
+//         let defaultSettingName = "DefaultSetting-" + genRandomName(3);
+//         let settingName = "";
 
-        //prompt window using electron-prompt and creat button(electron doesn't support prompt)
-        let creatCustomSettingWindow = async () => {
-            let settingName = await prompt({
-                title: "Custom Search",
-                label: "Enter custom search name:",
-                value: defaultSettingName,
-                inputAttrs: {
-                    type: "text"
-                },
-                type: "input"
-            })
+//         //prompt window using electron-prompt and creat button(electron doesn't support prompt)
+//         let creatCustomSettingWindow = async () => {
+//             let settingName = await prompt({
+//                 title: "Custom Search",
+//                 label: "Enter custom search name:",
+//                 value: defaultSettingName,
+//                 inputAttrs: {
+//                     type: "text"
+//                 },
+//                 type: "input"
+//             })
 
-            if (settingName != null) {
-                customSearchSetting.settingName = settingName;
-                customSettingArray.push(customSearchSetting);
-                localStorage.setItem("customSettingArray", JSON.stringify(customSettingArray));
+//             if (settingName != null) {
+//                 customSearchSetting.settingName = settingName;
+//                 customSettingArray.push(customSearchSetting);
+//                 localStorage.setItem("customSettingArray", JSON.stringify(customSettingArray));
 
-                let customWrapper = document.createElement("li");
-                customWrapper.setAttribute("id", "custom-wrapper-" + String(currentCustomSettingNum + 1))
+//                 let customWrapper = document.createElement("li");
+//                 customWrapper.setAttribute("id", "custom-wrapper-" + String(currentCustomSettingNum + 1))
 
-                //delete button
-                let customSearchDeleteBtn = document.createElement("button");
-                customSearchDeleteBtn.innerText = "X";
-                customSearchDeleteBtn.addEventListener("click", () => {
-                    //will prompt confirmation window first
-                    let deletOptions = {
-                        type: "warning",
-                        buttons: ["Yes", "No"],
-                        message: "Do you really want to delete " + settingName + " ?"
-                    }
-                    //return value is the index of selection
-                    let response = dialog.showMessageBoxSync(deletOptions)
-                    if (response == 0) {
-                        //remove object in custom setting array and set back the array to local storage
-                        let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
-                        for (let i = 0; i < customSettingArray.length; i++) {
-                            if (customSettingArray[i].settingName == settingName) {
-                                customSettingArray.splice(i, 1);
-                                break;
-                            }
-                        }
-                        localStorage.setItem("customSettingArray", JSON.stringify(customSettingArray));
+//                 //delete button
+//                 let customSearchDeleteBtn = document.createElement("button");
+//                 customSearchDeleteBtn.innerText = "X";
+//                 customSearchDeleteBtn.addEventListener("click", () => {
+//                     //will prompt confirmation window first
+//                     let deletOptions = {
+//                         type: "warning",
+//                         buttons: ["Yes", "No"],
+//                         message: "Do you really want to delete " + settingName + " ?"
+//                     }
+//                     //return value is the index of selection
+//                     let response = dialog.showMessageBoxSync(deletOptions)
+//                     if (response == 0) {
+//                         //remove object in custom setting array and set back the array to local storage
+//                         let customSettingArray = JSON.parse(localStorage.getItem("customSettingArray"));
+//                         for (let i = 0; i < customSettingArray.length; i++) {
+//                             if (customSettingArray[i].settingName == settingName) {
+//                                 customSettingArray.splice(i, 1);
+//                                 break;
+//                             }
+//                         }
+//                         localStorage.setItem("customSettingArray", JSON.stringify(customSettingArray));
 
-                        //remove animation
-                        $("#custom-wrapper-" + String(currentCustomSettingNum + 1)).slideUp(400);
-                        //delete all children
-                        while (customWrapper.hasChildNodes()) {
-                            customWrapper.removeChild(customWrapper.lastChild);
-                        }
-                        customWrapper.remove();
-                    }
-                })
+//                         //remove animation
+//                         $("#custom-wrapper-" + String(currentCustomSettingNum + 1)).slideUp(400);
+//                         //delete all children
+//                         while (customWrapper.hasChildNodes()) {
+//                             customWrapper.removeChild(customWrapper.lastChild);
+//                         }
+//                         customWrapper.remove();
+//                     }
+//                 })
 
-                let customSearchBtnElement = document.createElement("button");
-                customSearchBtnElement.innerText = settingName;
-                customSearchBtnElement.addEventListener("click", () => {
-                    customSearchClickEventListener(customSearchSetting);
-                })
-                customWrapper.appendChild(customSearchDeleteBtn);
-                customWrapper.appendChild(customSearchBtnElement);
-                document.getElementById("custom-condition-panel").appendChild(customWrapper);
+//                 let customSearchBtnElement = document.createElement("button");
+//                 customSearchBtnElement.innerText = settingName;
+//                 customSearchBtnElement.addEventListener("click", () => {
+//                     customSearchClickEventListener(customSearchSetting);
+//                 })
+//                 customWrapper.appendChild(customSearchDeleteBtn);
+//                 customWrapper.appendChild(customSearchBtnElement);
+//                 document.getElementById("custom-condition-panel").appendChild(customWrapper);
 
-            }
-            return true;
-        }
-        creatCustomSettingWindow();
-    }
-    else {
-        //reach the limit of local storage number
-        let reachLimitMesg = {
-            type: "warning",
-            message: "Reach the limit number of custom setting storage. Please delete other custom settings to store new one"
-        }
-        dialog.showMessageBoxSync(reachLimitMesg)
-    }
-})
+//             }
+//             return true;
+//         }
+//         creatCustomSettingWindow();
+//     }
+//     else {
+//         //reach the limit of local storage number
+//         let reachLimitMesg = {
+//             type: "warning",
+//             message: "Reach the limit number of custom setting storage. Please delete other custom settings to store new one"
+//         }
+//         dialog.showMessageBoxSync(reachLimitMesg)
+//     }
+// })
 
 //assign customSearch object assign to current enviroement 
-export function customSearchClickEventListener(customSearchObj) {
-    sessionStorage.setItem("sortProperty", customSearchObj.sortProperty);
-    sessionStorage.setItem("sortAsc", customSearchObj.sortAsc);
-    sessionStorage.setItem("currentPage", customSearchObj.currentPage);
-    sessionStorage.setItem("filteredItemList", customSearchObj.filteredItemList);
-    sessionStorage.setItem("tagSearchOption", customSearchObj.tagSearchOption)
-    sessionStorage.setItem("selectedTags", customSearchObj.selectedTags);
-    sessionStorage.setItem("searchText", customSearchObj.searchText);
+// export function customSearchClickEventListener(customSearchObj) {
+//     sessionStorage.setItem("sortProperty", customSearchObj.sortProperty);
+//     sessionStorage.setItem("sortAsc", customSearchObj.sortAsc);
+//     sessionStorage.setItem("currentPage", customSearchObj.currentPage);
+//     sessionStorage.setItem("filteredItemList", customSearchObj.filteredItemList);
+//     sessionStorage.setItem("tagSearchOption", customSearchObj.tagSearchOption)
+//     sessionStorage.setItem("selectedTags", customSearchObj.selectedTags);
+//     sessionStorage.setItem("searchText", customSearchObj.searchText);
     
-    reloadWindowPageNum();
-    //no need to pre-select all option and search, all info are in session storage. 
-    //search will sort the list->random order will break
-    //search();
-}
+//     reloadWindowPageNum();
+//     //no need to pre-select all option and search, all info are in session storage. 
+//     //search will sort the list->random order will break
+//     //search();
+// }
 
 //click event for dropdown menu of sort property, it won't change the order of asc/desc
 export function sortPropertyClickEventListener(prop) {
