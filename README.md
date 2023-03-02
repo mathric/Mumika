@@ -2,6 +2,8 @@
 
 Mumika is a customize image item search project
 
+Update: This project is design for my personal use at begining. There won't be any future update or restructuring for this.
+
 # Build
 
 * Install the dependencies
